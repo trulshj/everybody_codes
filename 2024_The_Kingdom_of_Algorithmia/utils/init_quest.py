@@ -21,4 +21,4 @@ FILE_NAMES = [f"{DIRECTORY_NAME}.py", "part_1.txt", "part_2.txt", "part_3.txt"]
 
 for file_name in FILE_NAMES:
     path = current_path / file_name
-    path.touch(mode=644, exist_ok=True)
+    path.touch(mode=0o644, exist_ok=True)
