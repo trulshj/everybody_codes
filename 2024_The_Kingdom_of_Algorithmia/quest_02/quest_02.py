@@ -1,6 +1,5 @@
-
 def read_input(part):
-    with open(f"part_{part}.txt") as f:
+    with open(f"/Users/trulshj/dev/everybody_codes/2024_The_Kingdom_of_Algorithmia/quest_02/part_{part}.txt") as f:
         h, t = f.read().split("\n\n")
         words = h.split(":")[-1].split(",")
         inscriptions = [x.rstrip() for x in t.split()]
@@ -16,7 +15,7 @@ def part_1():
             if word in inscription:
                 runic_words += 1
 
-    print(runic_words)
+    return runic_words
 
 
 def part_2():
@@ -35,45 +34,60 @@ def part_2():
                 for j in range(i, i+len(word)):
                     runic_symbols[j] = True
 
-    print(sum(runic_symbols))
+    return sum(runic_symbols)
 
 
 def part_3():
     words, inscriptions = read_input(3)
-    print(words)
-    print(inscriptions)
+    words += list(map(lambda w: w[::-1], words))
 
     rows = len(inscriptions)
     cols = len(inscriptions[0])
-
     runic_symbols = [False] * (rows * cols)
+
+    def update_symbols(coords):
+        for c in coords:
+            runic_symbols[c] = True
+
+    def get_horizontal(word, x, y):
+        coords = []
+
+        for idx, c in enumerate(word):
+            xn = (x+idx) % cols
+            if c == inscriptions[y][xn]:
+                coords.append(y * cols + xn)
+            else:
+                return []
+
+        return coords
+
+    def get_vertical(word, x, y):
+        coords = []
+
+        for idx, c in enumerate(word):
+            yn = y+idx
+            if c == inscriptions[yn][x]:
+                coords.append(((yn) * cols) + x)
+            else:
+                return []
+
+        return coords
 
     for y in range(rows):
         for x in range(cols):
             for word in words:
-                if (x+len(word) > cols) or (y+len(word) > rows):
+                coords = get_horizontal(word, x, y)
+                update_symbols(coords)
+
+                if (y+len(word) > rows):
                     continue
-                left = ""
-                down = ""
 
-                i = x + (y * cols)
+                coords = get_vertical(word, x, y)
+                update_symbols(coords)
 
-                if (x+len(word) <= cols):
-                    left = ""
-                    for l in range(len(word)):
-                        left += inscriptions[y][x+l]
-                    print(left)
-                    if left == word or left == word[::-1]:
-                        runic_symbols[i] = True
-
-                if (y+len(word) <= rows):
-                    down = ""
-                    for l in range(len(word)):
-                        down += inscriptions[y+l][x]
-                    if down == word or down == word[::-1]:
-                        runic_symbols[i] = True
-
-    print(sum(runic_symbols))
+    return sum(runic_symbols)
 
 
-part_3()
+print("Part 1:", part_1())
+print("Part 2:", part_2())
+print("Part 3:", part_3())
