@@ -1,9 +1,11 @@
 from collections import deque, defaultdict
 from math import ceil
+from pathlib import Path
 
 
-def read_input(part: int) -> list[deque[int]]:
-    with open(f"/Users/trulshj/dev/everybody_codes/2024_The_Kingdom_of_Algorithmia/quest_05/part_{part}.txt") as f:
+def read_input(part: int, base_path: str = "/Users/trulshj/dev/everybody_codes/2024_The_Kingdom_of_Algorithmia/") -> list[deque[int]]:
+    file_path = Path(base_path) / f"quest_05/part_{part}.txt"
+    with open(file_path) as f:
         return list(map(deque, zip(*(map(int, line.split()) for line in f.readlines()))))
 
 
@@ -11,20 +13,18 @@ def do_dance(grid: list[deque[int]], column_idx: int):
     dancer = grid[column_idx].popleft()
     target_column = grid[(column_idx + 1) % len(grid)]
     rows = len(target_column)
-    side = 'left' if ceil((dancer / rows)) % 2 else 'right'
 
-    if side == 'left':
+    if ceil((dancer / rows)) % 2:
         target_idx = (dancer % rows) - 1
         target_column.insert(target_idx, dancer)
-
-    if side == 'right':
+    else:
         target_idx = ((-dancer) % rows) + 1
         target_column.insert(target_idx, dancer)
 
     return int("".join(map(lambda x: str(x[0]), grid)))
 
 
-def hash_arrangement(x):
+def get_arrangement_key(x):
     return "".join(("".join(map(str, z))) for z in x)
 
 
@@ -48,7 +48,7 @@ def run_dance(part):
             break
 
         if (part == 3):
-            arrangement_key = hash_arrangement(arrangement)
+            arrangement_key = get_arrangement_key(arrangement)
             if arrangement_key in seen:
                 print(max(shouts.keys()))
                 break
@@ -56,6 +56,7 @@ def run_dance(part):
                 seen.add(arrangement_key)
 
 
-run_dance(1)
-run_dance(2)
-run_dance(3)
+if __name__ == "__main__":
+    run_dance(1)
+    run_dance(2)
+    run_dance(3)
