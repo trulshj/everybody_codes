@@ -18,7 +18,7 @@ def do_dance(grid: list[deque[int]], column_idx: int):
         target_column.insert(target_idx, dancer)
 
     if side == 'right':
-        target_idx = ((rows - (dancer % rows)) % rows) + 1
+        target_idx = ((-dancer) % rows) + 1
         target_column.insert(target_idx, dancer)
 
     return int("".join(map(lambda x: str(x[0]), grid)))
