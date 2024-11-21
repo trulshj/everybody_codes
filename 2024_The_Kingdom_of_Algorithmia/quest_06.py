@@ -1,13 +1,11 @@
+from utils.input import read_input
 from collections import deque, Counter, defaultdict
-from pathlib import Path
 
 
-def read_input(part: int, base_path: str = "/Users/trulshj/dev/everybody_codes/2024_The_Kingdom_of_Algorithmia/"):
-    file_path = Path(base_path) / f"quest_06/part_{part}.txt"
-    with open(file_path) as f:
-        lines = [l.split(':') for l in f.read().split()]
-        graph = defaultdict(list, {x[0]: x[1].split(',') for x in lines})
-        return graph
+def parse_input(part):
+    lines = [l.split(':') for l in read_input(6, part).split()]
+    graph = defaultdict(list, {x[0]: x[1].split(',') for x in lines})
+    return graph
 
 
 def bfs(graph):
@@ -31,7 +29,7 @@ def bfs(graph):
 
 
 def find_longest_path(part):
-    graph = read_input(part)
+    graph = parse_input(part)
     paths = bfs(graph)
     depth_counts = Counter(map(lambda x: x[1], paths))
 
