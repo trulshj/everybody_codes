@@ -1,3 +1,4 @@
+from utils.input import read_input
 
 potions_per_enemy = {
     'A': 0,
@@ -51,23 +52,11 @@ def calculate_potions_on_threes(enemies):
     return potions
 
 
-PART_1_TEST_INPUT = "ABBAC"
-PART_2_TEST_INPUT = "AxBCDDCAxD"
-PART_3_TEST_INPUT = "xBxAAABCDxCC"
-
-with open('part_1.txt') as f:
-    enemies = f.readline().rstrip()
-
+enemies = read_input(1, 1).rstrip()
 print(calculate_potions(enemies))
 
-with open('part_2.txt') as f:
-    enemies2 = f.readline().rstrip()
-
-print(calculate_potions_on_pairs(PART_2_TEST_INPUT))
+enemies2 = read_input(1, 2).rstrip()
 print(calculate_potions_on_pairs(enemies2))
 
-with open('part_3.txt') as f:
-    enemies3 = f.readline().rstrip()
-
-print(calculate_potions_on_threes(PART_3_TEST_INPUT))
+enemies3 = read_input(1, 3).rstrip()
 print(calculate_potions_on_threes(enemies3))

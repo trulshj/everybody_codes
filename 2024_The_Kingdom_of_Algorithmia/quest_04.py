@@ -1,6 +1,8 @@
-def read_input(part: int):
-    with open(f"/Users/trulshj/dev/everybody_codes/2024_The_Kingdom_of_Algorithmia/quest_04/part_{part}.txt") as f:
-        return [int(line.rstrip()) for line in f.readlines()]
+from utils.input import readlines_input
+
+
+def parse_input(part: int):
+    return [int(line.rstrip()) for line in readlines_input(4, part)]
 
 
 def find_strokes_to_even_nails(nails):
@@ -18,11 +20,11 @@ def find_strokes_to_even_nails_2(nails):
     return min_seen
 
 
-nails_1 = read_input(1)
+nails_1 = parse_input(1)
 print(find_strokes_to_even_nails(nails_1))
 
-nails_2 = read_input(2)
+nails_2 = parse_input(2)
 print(find_strokes_to_even_nails(nails_2))
 
-nails_3 = read_input(3)
+nails_3 = parse_input(3)
 print(find_strokes_to_even_nails_2(nails_3))

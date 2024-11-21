@@ -1,13 +1,15 @@
-def read_input(part):
-    with open(f"/Users/trulshj/dev/everybody_codes/2024_The_Kingdom_of_Algorithmia/quest_02/part_{part}.txt") as f:
-        h, t = f.read().split("\n\n")
-        words = h.split(":")[-1].split(",")
-        inscriptions = [x.rstrip() for x in t.split()]
+from utils.input import read_input
+
+
+def parse_input(part):
+    h, t = read_input(2, part).split("\n\n")
+    words = h.split(":")[-1].split(",")
+    inscriptions = [x.rstrip() for x in t.split()]
     return words, inscriptions
 
 
 def part_1():
-    words, inscriptions = read_input(1)
+    words, inscriptions = parse_input(1)
 
     runic_words = 0
     for word in words:
@@ -19,7 +21,7 @@ def part_1():
 
 
 def part_2():
-    words, inscriptions = read_input(2)
+    words, inscriptions = parse_input(2)
     words += list(map(lambda w: w[::-1], words))
     inscription = " ".join(inscriptions)
     runic_symbols = [False] * len(inscription)
@@ -38,7 +40,7 @@ def part_2():
 
 
 def part_3():
-    words, inscriptions = read_input(3)
+    words, inscriptions = parse_input(3)
     words += list(map(lambda w: w[::-1], words))
 
     rows = len(inscriptions)

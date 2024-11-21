@@ -1,12 +1,10 @@
 from collections import deque, defaultdict
 from math import ceil
-from pathlib import Path
+from utils.input import readlines_input
 
 
-def read_input(part: int, base_path: str = "/Users/trulshj/dev/everybody_codes/2024_The_Kingdom_of_Algorithmia/") -> list[deque[int]]:
-    file_path = Path(base_path) / f"quest_05/part_{part}.txt"
-    with open(file_path) as f:
-        return list(map(deque, zip(*(map(int, line.split()) for line in f.readlines()))))
+def parse_input(part: int) -> list[deque[int]]:
+    return list(map(deque, zip(*(map(int, line.split()) for line in readlines_input(5, part)))))
 
 
 def do_dance(grid: list[deque[int]], column_idx: int):
@@ -29,7 +27,7 @@ def get_arrangement_key(x):
 
 
 def run_dance(part):
-    arrangement = read_input(part)
+    arrangement = parse_input(part)
     round_idx = 0
     shouts = defaultdict(int)
     seen = set()

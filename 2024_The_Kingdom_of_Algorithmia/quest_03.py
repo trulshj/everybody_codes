@@ -1,9 +1,9 @@
 from collections import defaultdict
+from utils.input import readlines_input
 
 
-def read_input(part: int):
-    with open(f"/Users/trulshj/dev/everybody_codes/2024_The_Kingdom_of_Algorithmia/quest_03/part_{part}.txt") as f:
-        return [line.rstrip() for line in f.readlines()]
+def parse_input(part: int):
+    return [line.rstrip() for line in readlines_input(3, part)]
 
 
 def pad_grid(grid):
@@ -63,12 +63,12 @@ def dig_grid(grid, include_diagonals=False):
     return digs
 
 
-grid_1 = read_input(1)
+grid_1 = parse_input(1)
 print(dig_grid(grid_1))
 
-grid_2 = read_input(2)
+grid_2 = parse_input(2)
 print(dig_grid(grid_2))
 
-grid_3 = read_input(3)
+grid_3 = parse_input(3)
 pad_grid(grid_3)
 print(dig_grid(grid_3, include_diagonals=True))
