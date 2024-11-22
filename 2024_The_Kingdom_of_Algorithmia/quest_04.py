@@ -10,21 +10,20 @@ def find_strokes_to_even_nails(nails):
     return sum(map(lambda x: x - shortest, nails))
 
 
-def find_strokes_to_even_nails_2(nails):
-    min_seen = float('inf')
-
-    for target in range(min(nails), max(nails)):
-        current = sum(map(lambda x, target=target: abs(x-target), nails))
-        min_seen = min(min_seen, current)
-
-    return min_seen
+# Thanks to Jakob, aka The Baron, Big Genius
+def find_strokes_using_median(nails):
+    median_idx = len(nails) // 2
+    median = sorted(nails)[median_idx]
+    
+    return sum(map(lambda x: abs(x - median), nails))
 
 
-nails_1 = parse_input(1)
-print(find_strokes_to_even_nails(nails_1))
+if __name__ == "__main__":
+    nails_1 = parse_input(1)
+    print(find_strokes_to_even_nails(nails_1))
 
-nails_2 = parse_input(2)
-print(find_strokes_to_even_nails(nails_2))
+    nails_2 = parse_input(2)
+    print(find_strokes_to_even_nails(nails_2))
 
-nails_3 = parse_input(3)
-print(find_strokes_to_even_nails_2(nails_3))
+    nails_3 = parse_input(3)
+    print(find_strokes_using_median(nails_3))
