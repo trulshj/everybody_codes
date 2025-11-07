@@ -1,0 +1,3 @@
+Ylarkyr,Ulmarjor,Tazgnar,Tharilrax,Glaurdar,Taljoris,Ralkryth,Brivluth,Glaurath,Brylxar,Zyrelor,Naldxar,Balural,Ardenagrath,Myndther,Silluth,Ignluth,Zraalther,Rythannyn,Lazral,Fenrex,Vyrsor,Morntor,Quentaril,Taznar,Orahsarix,Calquin,Jaerzyph,Caeltor,Braeophis
+
+L49,R41,L30,R41,L32,R36,L41,R28,L13,R19,L13,R20,L27,R5,L43,R41,L39,R25,L34,R18,L5,R5,L5,R29,L5,R39,L5,R43,L5,R47,L5,R42,L5,R23,L5,R26,L5,R37,L5,R5,L40,R6,L35,R15,L46,R32,L25,R12,L9,R29,L5,R22,L40,R46,L48,R47,L22,R35,L48
